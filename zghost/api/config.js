@@ -1,11 +1,12 @@
 import { server } from "../utils/server.js";
+import 'dotenv/config.js'
 
 export const runConfigurations = () =>{
-    server.setViewsDirectory('templates')
-    server.setViewEngine('ejs')
-    server.useJSONPayloads()
+    server.useJSONParsedPayloads()
     server.useLogger('dev')
-    server.useStaticFiles('static')
     server.useUrlEncodedPayLoads()
+
+    // Connect to DB
+    server.connectToDB(process.env.MONGODB_URI)
     
 }

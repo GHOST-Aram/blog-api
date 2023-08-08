@@ -1,7 +1,15 @@
 import { api, express } from "../api/init.js"
 import morgan from "morgan";
+import mongoose from 'mongoose'
 
 class Server{
+    connectToDB = (DB_URI) =>{
+        mongoose.connect(DB_URI).then(result =>{
+            console.log('Connected to DB.')
+        }).catch(error =>{
+            console.error('Failed to connect to DB.', error.message)
+        })
+    }
 
     setViewsDirectory = (dirname) =>{
         api.set('views', dirname)
@@ -11,7 +19,7 @@ class Server{
         api.set('view engine', engine);
     }
 
-    useJSONPayloads = () => {
+    useJSONParsedPayloads = () => {
         api.use(express.json());
     }
 
