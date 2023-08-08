@@ -9,7 +9,6 @@ export const update_blog = async(req, res) =>{
             id, update_doc, {
                 runValidators: true,
                 setDefaultsOnInsert: true,
-                upsert: true,
                 new: true,
             }
         )
